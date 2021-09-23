@@ -1,0 +1,1 @@
+cat /etc/passwd | sed '/^#/d' | cut -d':' -f1 | rev | sort -r | tr '\n' ' ' | tr ' ' ', '
