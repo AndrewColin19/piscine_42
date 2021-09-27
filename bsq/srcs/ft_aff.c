@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_if.c                                      :+:      :+:    :+:   */
+/*   aff.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 10:29:36 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/23 18:44:57 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/25 10:43:15 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/27 10:59:47 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../includes/utils.h"
 
-int	ft_count_if(char **tab, int length, int (*f)(char*))
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *str)
 {
 	int	i;
-	int	nb;
 
-	nb = 0;
 	i = 0;
-	while (i < length)
+	while (str[i] != '\0')
 	{
-		if (f(tab[i]) != 0)
-			nb++;
+		ft_putchar(str[i]);
 		i++;
 	}
-	return (nb);
+}
+
+int	ft_aff_error_dash(char *error)
+{
+	ft_putstr(error);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 12:28:52 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/23 12:36:05 by acolin           ###   ########.fr       */
+/*   Updated: 2021/09/24 10:28:58 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,23 @@ int	ft_strcmp(char *s1, char *s2)
 void	ft_sort_string_tab(char **tab)
 {
 	int		i;
-	int		find;
+	int		j;
 	char	*temp;
 
-	find = 1;
-	while (find)
+	i = 0;
+	while (tab[i])
 	{
-		find = 0;
-		i = 0;
-		while (tab[i] != '\0')
+		j = i + 1;
+		while (tab[j])
 		{
-			if (ft_strcmp(tab[i], tab[i + 1]) > 0)
+			if (ft_strcmp(tab[i], tab[j]) > 0)
 			{
 				temp = tab[i];
-				tab[i] = tab[i + 1];
-				tab[i + 1] = temp;
-				find = 1;
-				i++;
+				tab[i] = tab[j];
+				tab[j] = temp;
 			}
+			j++;
 		}
+		i++;
 	}
 }

@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_if.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 10:29:36 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/23 18:44:57 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/27 10:44:42 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/27 10:50:47 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_count_if(char **tab, int length, int (*f)(char*))
+int	main(int argc, char *argv[])
 {
-	int	i;
-	int	nb;
-
-	nb = 0;
-	i = 0;
-	while (i < length)
-	{
-		if (f(tab[i]) != 0)
-			nb++;
-		i++;
-	}
-	return (nb);
+	(void) argv;
+	if (argc < 1)
+		return (0);
 }

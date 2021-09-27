@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_if.c                                      :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 10:29:36 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/23 18:44:57 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/13 09:36:22 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/13 09:44:05 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_count_if(char **tab, int length, int (*f)(char*))
+int	ft_strlen(char *str)
 {
 	int	i;
-	int	nb;
 
-	nb = 0;
 	i = 0;
-	while (i < length)
+	while (str[i] != '\0')
 	{
-		if (f(tab[i]) != 0)
-			nb++;
 		i++;
 	}
-	return (nb);
+	return (i);
 }

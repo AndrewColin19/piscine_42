@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_if.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 10:29:36 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/23 18:44:57 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/15 13:56:30 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/16 13:16:47 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 
-int	ft_count_if(char **tab, int length, int (*f)(char*))
+char	*ft_strdup(char *src)
 {
-	int	i;
-	int	nb;
+	char	*src_new;
+	int		size;
+	int		i;
 
-	nb = 0;
+	size = 0;
+	while (src[size] != '\0')
+		size++;
+	src_new = malloc(size + 1);
 	i = 0;
-	while (i < length)
+	while (src[i] != '\0')
 	{
-		if (f(tab[i]) != 0)
-			nb++;
+		src_new[i] = src[i];
 		i++;
 	}
-	return (nb);
+	src_new[i] = '\0';
+	return (src_new);
 }

@@ -1,27 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_if.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 10:29:36 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/23 18:44:57 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/18 09:52:49 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/19 15:28:20 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 
-int	ft_count_if(char **tab, int length, int (*f)(char*))
+void ft_affiche_error();
+int ft_solve(char *tab);
+
+char	*tab_arg(char *arg)
 {
-	int	i;
-	int	nb;
-
-	nb = 0;
+	int i;
+	int j;
+	char *tab;
+	
 	i = 0;
-	while (i < length)
+	j = 0;
+	tab = (char *)malloc(sizeof(char) * 17);
+	while (i < 16)
 	{
-		if (f(tab[i]) != 0)
-			nb++;
+		tab[i] = arg[j];
+		j += 2;
 		i++;
 	}
-	return (nb);
+	tab[i] = '\0';
+	return (tab);
 }
+
+int	main(int argc, char *argv[])
+{
+	if (argc > 2 || argc == 1)
+		ft_affiche_error();
+	else
+	{
+		ft_solve(tab_arg(argv[1]));
+	}
+	return (0);
+} 

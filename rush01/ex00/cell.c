@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_if.c                                      :+:      :+:    :+:   */
+/*   cell.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 10:29:36 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/23 18:44:57 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/19 10:43:49 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/19 10:57:50 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_count_if(char **tab, int length, int (*f)(char*))
-{
-	int	i;
-	int	nb;
+#include "ft_cell.h"
 
-	nb = 0;
-	i = 0;
-	while (i < length)
-	{
-		if (f(tab[i]) != 0)
-			nb++;
-		i++;
-	}
-	return (nb);
+void	set_cell(t_cell *c, int x, int y)
+{
+	c->x = x;
+	c->y = y;
 }

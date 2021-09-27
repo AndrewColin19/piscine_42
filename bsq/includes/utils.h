@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_if.c                                      :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 10:29:36 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/23 18:44:57 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/27 10:49:17 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/27 14:49:37 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_count_if(char **tab, int length, int (*f)(char*))
-{
-	int	i;
-	int	nb;
+#ifndef UTILS_H
+# define UTILS_H
 
-	nb = 0;
-	i = 0;
-	while (i < length)
-	{
-		if (f(tab[i]) != 0)
-			nb++;
-		i++;
-	}
-	return (nb);
-}
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
+
+# define MAP_ER "map error\n"
+
+int		ft_aff_error_dash(char *error);
+void	ft_putstr(char *str);
+char	**ft_split(char *str, char *charset);
+
+#endif

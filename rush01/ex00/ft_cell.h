@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_if.c                                      :+:      :+:    :+:   */
+/*   ft_cell.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/22 10:29:36 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/23 18:44:57 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/17 12:29:06 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/19 10:58:01 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_count_if(char **tab, int length, int (*f)(char*))
-{
-	int	i;
-	int	nb;
+#ifndef FT_CELL_H
+# define FT_CELL_H
 
-	nb = 0;
-	i = 0;
-	while (i < length)
-	{
-		if (f(tab[i]) != 0)
-			nb++;
-		i++;
-	}
-	return (nb);
-}
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_cell;
+
+void set_cell(t_cell *c, int x, int y);
+
+#endif

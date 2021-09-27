@@ -1,39 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_affiche.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 10:29:18 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/26 20:00:07 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/18 09:59:16 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/18 19:54:37 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned __int128	ft_atoi(char *str)
+#include <unistd.h>
+
+void	ft_putchar(char c)
 {
-	unsigned __int128	i;
-	int					neg;
-	unsigned __int128	num;
+	write(1, &c, 1);
+}
+
+void affiche_tab(int **cells, int size)
+{
+	int i;
+	int j;
 
 	i = 0;
-	neg = 1;
-	num = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
-		|| str[i] == '\f' || str[i] == '\r')
-		i++;
-	while (str[i] == '-' || str[i] == '+')
+	while (i < size)
 	{
-		if (str[i] == '-')
-			neg *= -1;
+		j = 0;
+		while(j < size)
+		{
+			ft_putchar((cells[i][j] + '0'));
+			if (j < size - 1)
+				ft_putchar(' ');
+			j++;
+		}
+		ft_putchar('\n');
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+}
+
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
 	{
-		num = num * 10 + (str[i] - '0');
+		ft_putchar(str[i]);
 		i++;
 	}
-	if (neg < 0)
-		return (-num);
-	return (num);
+}
+
+void ft_affiche_error()
+{
+	ft_putstr("Error\n");
 }
