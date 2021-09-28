@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   ft_set_point.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/25 10:43:15 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/28 16:25:00 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/28 22:14:33 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/28 22:16:58 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/utils.h"
 
-void	ft_putchar(char c)
+t_point	ft_set_point(int x, int y)
 {
-	write(1, &c, 1);
-}
+	t_point point;
 
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-}
-
-int	ft_aff_error(char *error)
-{
-	ft_putstr(error);
-	return (1);
+	point.x = x;
+	point.y = y;
+	return (point);
 }

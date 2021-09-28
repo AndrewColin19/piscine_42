@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/25 10:43:15 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/28 16:25:00 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/13 10:29:18 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/13 13:09:45 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/utils.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+#include <unistd.h>
 
-void	ft_putstr(char *str)
+int	ft_atoi(char *str)
 {
 	int	i;
+	int	neg;
+	int	num;
 
 	i = 0;
-	while (str[i] != '\0')
+	neg = 1;
+	num = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r')
+		i++;
+	while (str[i] == '-' || str[i] == '+')
 	{
-		ft_putchar(str[i]);
+		if (str[i] == '-')
+			neg *= -1;
 		i++;
 	}
-}
-
-int	ft_aff_error(char *error)
-{
-	ft_putstr(error);
-	return (1);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + (str[i] - '0');
+		i++;
+	}
+	return (num * neg);
 }

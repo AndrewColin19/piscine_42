@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/25 10:43:15 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/28 16:25:00 by acolin           ###   ########.fr       */
+/*   Created: 2021/09/28 15:28:06 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/28 21:57:34 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/utils.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *str)
+int	ft_tablen(char **tab)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (tab[i] != '\0')
 	{
-		ft_putchar(str[i]);
 		i++;
 	}
+	return (i);
 }
 
-int	ft_aff_error(char *error)
+int	ft_tablen_char(char **tab)
 {
-	ft_putstr(error);
-	return (1);
+	int	i;
+	int	j;
+	int	size;
+
+	i = 1;
+	size = 0;
+	while (tab[i] != '\0')
+	{
+		j = 0;
+		while (tab[i][j] != '\0')
+		{
+			size++;
+			j++;
+		}
+		i++;
+	}
+	return (size);
 }
