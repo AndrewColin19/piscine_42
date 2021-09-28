@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_combn.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/28 11:37:19 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/28 11:37:23 by acolin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
 void	ft_putchar(char c)
@@ -5,41 +17,36 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int	ft_end(char *tab, int size)
+void	ft_print_comb(int table[10], int n)
 {
-	int	count;
-	int	index;
+	int		i;
 
-	count = 0;
-	index = 0;
+	i = 0;
+	while (i < n)
+		ft_putchar(table[i] + '0'), i++;
+	if (table[0] != 10 - n)
+		write(1, ", ", 2);
+}
 
-	while (index < size)
+void	ft_solve_combn(int table[10], int n, int i)
+{
+	if (i == 0)
+		table[i] = 0;
+	else
+		table[i] = table[i - 1] + 1;
+	while (table[i] < 11 - n + i)
 	{
-		if (tab[index] == '9') count++;
-		index++;
+		if (i == n - 1)
+			ft_print_comb(table, n);
+		else
+			ft_solve_combn(table, n, i + 1);
+		table[i] += 1;
 	}
-
-	if (count == size) return (1);
-	else return (0);
 }
 
 void	ft_print_combn(int n)
 {
-	char tab[n];
-	int index;
-	while (index < n) tab[index++] = '0';
-	while (ft_end(tab, n) != 1)
-	{
-		if (tab[n - 1] == '9')
-		{
-			for (index = n - 1; tab[index] == '9'; index--);
-			tab[index]++;
-			index++;
-			while (index < n) tab[index++] = '0';
-		}
-		else tab[n - 1]++;
-		for(index = 0; index < n; index++) ft_putchar(tab[index]);
-		ft_putchar(',');
-		ft_putchar(' ');
-	}
+	int		table[10];
+
+	ft_solve_combn(table, n, 0);
 }

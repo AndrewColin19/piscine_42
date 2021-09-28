@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_comb.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/28 11:11:45 by acolin            #+#    #+#             */
+/*   Updated: 2021/09/28 11:11:47 by acolin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
 void	ft_putchar(char c)
@@ -5,36 +17,38 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_print(char a, char b, char c)
+void	ft_aff_num(int a, int b, int c)
 {
-	ft_putchar(a);
-	ft_putchar(b);
-	ft_putchar(c);
-	ft_putchar(',');
-	ft_putchar(' ');
+	ft_putchar(a + '0');
+	ft_putchar(b + '0');
+	ft_putchar(c + '0');
 }
 
 void	ft_print_comb(void)
 {
-	int		a;
-	int		b;
-	int		c;
+	int	i;
+	int	j;
+	int	k;
 
-	a = '0';
-	b = '1';
-	c = '2';
-	while (a < ('6' + 1))
+	i = 0;
+	while (i <= 7)
 	{
-		while (b < ('7' + 1))
+		j = i + 1;
+		while (j <= 8)
 		{
-			while (c < ('8' + 1))
+			k = j + 1;
+			while (k <= 9)
 			{
-				ft_print(a, b, c);
-				c++;
+				ft_aff_num(i, j, k);
+				if (!(i == 7 && j == 8 && k == 9))
+				{
+					ft_putchar(',');
+					ft_putchar(' ');
+				}
+				k++;
 			}
-			c = ++b + 1;
+			j++;
 		}
-		b = ++a;
+		i++;
 	}
-	write(1, "789", 3);
 }
