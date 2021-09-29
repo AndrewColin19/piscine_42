@@ -6,7 +6,7 @@
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:49:17 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/28 22:17:31 by acolin           ###   ########.fr       */
+/*   Updated: 2021/09/29 15:28:43 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_point
 	int	y;
 }	t_point;
 
+void	ft_del_nprint(char *str);
 t_point	ft_set_point(int x, int y);
 char	**ft_solve(char **tab, int size, char *c);
 char	*ft_char(char *str);

@@ -6,7 +6,7 @@
 #    By: acolin <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/23 12:53:53 by acolin            #+#    #+#              #
-#    Updated: 2021/09/28 22:21:08 by acolin           ###   ########.fr        #
+#    Updated: 2021/09/29 18:57:29 by acolin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 all: ${NAME}
 
-${NAME}: 
+${NAME}:
 	gcc ${CFLAGS} -I includes ${SRCS} -o ${NAME}
 
 clean:
@@ -28,3 +28,4 @@ fclean: clean
 
 re: fclean all
 
+.PHONY: all clean fclean 

@@ -6,7 +6,7 @@
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:52:19 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/28 17:01:58 by acolin           ###   ########.fr       */
+/*   Updated: 2021/09/29 17:52:05 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/utils.h"
@@ -14,13 +14,18 @@
 char	*ft_read_file(int file_d, int size)
 {
 	char	*str;
-	int		reader;
-
-	str = malloc(sizeof(char) * size + 1);
-	reader = read(file_d, str, size);
-	if (reader < 0)
-		return (0);
+	char	buffer[1];
+	int i;
+	
+	i = 0;
+	str = malloc(size);
+	while (read(file_d, buffer, 1) > 0)
+	{
+		str[i] = buffer[0];
+		i++;
+	}
 	close(file_d);
+	str[size] = '\0';
 	return (str);
 }
 
@@ -60,9 +65,13 @@ int	verif_line(char **str)
 
 	size = 0;
 	i = 1;
+	if (ft_tablen(str) < 2)
+		return (1);
 	if (ft_check_char_line(str[i], str[0]))
 		return (1);
 	size = ft_strlen(str[i]);
+	if (size < 1)
+		return (1);
 	i++;
 	while (str[i] != '\0')
 	{
@@ -75,20 +84,12 @@ int	verif_line(char **str)
 
 int	ft_count_file(int file_d)
 {
-	int		reader;
 	int		cb;
 	char	buffer[1];
 
 	cb = 0;
-	reader = read(file_d, buffer, 1);
-	if (reader < 0)
-		return (-1);
-	cb++;
-	while (reader)
-	{
-		reader = read(file_d, buffer, 1);
+	while (read(file_d, buffer, 1) > 0)
 		cb++;
-	}
 	close(file_d);
 	return (cb);
 }

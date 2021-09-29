@@ -6,7 +6,7 @@
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 19:11:05 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/28 22:23:34 by acolin           ###   ########.fr       */
+/*   Updated: 2021/09/29 19:42:33 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/utils.h"
@@ -29,7 +29,7 @@ int	ft_check_increment(t_square carre, char **tab, char *c, t_point point)
 		j = point.y;
 		while (j < (point.y + carre.size))
 		{
-			if (tab[i][j] == c[1])
+			if (tab[i][j] == c[1] || tab[i][j] == '\0')
 				return (0);
 			j++;
 		}
@@ -58,10 +58,13 @@ void	ft_print_square(t_square carre, char **tab, char *c)
 
 int	ft_check_coor(int coor, t_square carre, int size)
 {
-	if (coor + carre.size < size)
+	printf("coor:%i c:%i size :%i\n", coor, carre.size, size);
+	if (coor + carre.size - 1 > size - 1)
+		coor = size;
+	else if (coor + carre.size - 1 < size - 1)
 		coor++;
 	else
-		coor += carre.size;
+		coor++;
 	return (coor);
 }
 
@@ -79,7 +82,7 @@ char	**ft_solve(char **tab, int size, char *c)
 	while (i < size)
 	{
 		j = 0;
-		while (tab[i][j] != '\0')
+		while (j < sizel)
 		{
 			if (ft_check_increment(carre, tab, c, ft_set_point(carre.x, carre.y)))
 				ft_set_square(&carre, carre.x, carre.y, (carre.size + 1));
