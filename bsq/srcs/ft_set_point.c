@@ -12,11 +12,13 @@
 
 #include "../includes/utils.h"
 
-t_point	ft_set_point(int x, int y)
+t_point	ft_set_point(int x, int y, int size, int sizel)
 {
 	t_point point;
 
 	point.x = x;
 	point.y = y;
+	point.size = size;
+	point.sizel = sizel;
 	return (point);
 }

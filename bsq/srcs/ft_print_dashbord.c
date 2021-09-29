@@ -31,7 +31,7 @@ void	ft_print_dashbord(char *filename)
 	char	**tab;
 
 	tab = ft_read_dashbord(filename);
-	tab = ft_solve(tab, (ft_tablen(tab) - 1), ft_char(tab[0]));
+	tab = ft_solve(tab, ft_tablen(tab), ft_char(tab[0]));
 	i = 1;
 	while (tab[i] != 0)
 	{

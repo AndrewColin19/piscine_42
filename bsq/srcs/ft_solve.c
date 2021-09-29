@@ -29,6 +29,8 @@ int	ft_check_increment(t_square carre, char **tab, char *c, t_point point)
 		j = point.y;
 		while (j < (point.y + carre.size))
 		{
+			if (i >= point.size || j >= point.sizel)
+				return (0);
 			if (tab[i][j] == c[1] || tab[i][j] == '\0')
 				return (0);
 			j++;
@@ -42,7 +44,7 @@ void	ft_print_square(t_square carre, char **tab, char *c)
 {
 	int	j;
 	int	i;
-
+	printf("x:%i y:%i size:%i\n",carre.x, carre.y, carre.size - 1);
 	i = carre.x;
 	while (i < carre.size + carre.x - 1)
 	{
@@ -56,18 +58,6 @@ void	ft_print_square(t_square carre, char **tab, char *c)
 	}
 }
 
-int	ft_check_coor(int coor, t_square carre, int size)
-{
-	printf("coor:%i c:%i size :%i\n", coor, carre.size, size);
-	if (coor + carre.size - 1 > size - 1)
-		coor = size;
-	else if (coor + carre.size - 1 < size - 1)
-		coor++;
-	else
-		coor++;
-	return (coor);
-}
-
 char	**ft_solve(char **tab, int size, char *c)
 {
 	int			i;
@@ -75,22 +65,23 @@ char	**ft_solve(char **tab, int size, char *c)
 	int			sizel;
 	t_square	carre;
 
-	i = 0;
+	i = 1;
 	j = 0;
 	sizel = ft_strlen(tab[1]);
-	ft_set_square(&carre, 1, 0, 0);
+	ft_set_square(&carre, i, j, 1);
+	printf("size:%i sizel:%i\n", size, sizel);
 	while (i < size)
 	{
 		j = 0;
 		while (j < sizel)
 		{
-			if (ft_check_increment(carre, tab, c, ft_set_point(carre.x, carre.y)))
+			if (ft_check_increment(carre, tab, c, ft_set_point(carre.x, carre.y , size, sizel)))
 				ft_set_square(&carre, carre.x, carre.y, (carre.size + 1));
-			else if (ft_check_increment(carre, tab, c, ft_set_point(i, j)))
+			else if (ft_check_increment(carre, tab, c, ft_set_point(i, j, size, sizel)))
 				ft_set_square(&carre, i, j, (carre.size + 1));
-			j = ft_check_coor(j, carre, sizel);
+			j++;
 		}
-		i = ft_check_coor(i, carre, size);
+		i++;
 	}
 	ft_print_square(carre, tab, c);
 	return (tab);

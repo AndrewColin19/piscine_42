@@ -31,10 +31,12 @@ typedef struct s_point
 {
 	int	x;
 	int	y;
+	int size;
+	int sizel;
 }	t_point;
 
 void	ft_del_nprint(char *str);
-t_point	ft_set_point(int x, int y);
+t_point	ft_set_point(int x, int y, int size, int sizel);
 char	**ft_solve(char **tab, int size, char *c);
 char	*ft_char(char *str);
 int		ft_strlen(char *str);
