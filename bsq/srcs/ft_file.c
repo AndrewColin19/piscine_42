@@ -6,26 +6,31 @@
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 10:52:19 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/29 17:52:05 by acolin           ###   ########.fr       */
+/*   Updated: 2021/09/30 10:21:04 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/utils.h"
 
-char	*ft_read_file(int file_d, int size)
+char	*ft_read_file(int file_d)
 {
 	char	*str;
-	char	buffer[1];
-	int i;
-	
+	char	buffer[30000];
+	int		i;
+
 	i = 0;
-	str = malloc(size);
-	while (read(file_d, buffer, 1) > 0)
+	if (read(file_d, buffer, 30000) < 1)
+		return (0);
+	while (buffer[i] != '\0')
+		i++;
+	str = malloc(i + 1);
+	i = 0;
+	while (buffer[i] != '\0')
 	{
-		str[i] = buffer[0];
+		str[i] = buffer[i];
 		i++;
 	}
 	close(file_d);
-	str[size] = '\0';
+	str[i] = '\0';
 	return (str);
 }
 
@@ -82,32 +87,21 @@ int	verif_line(char **str)
 	return (0);
 }
 
-int	ft_count_file(int file_d)
-{
-	int		cb;
-	char	buffer[1];
-
-	cb = 0;
-	while (read(file_d, buffer, 1) > 0)
-		cb++;
-	close(file_d);
-	return (cb);
-}
-
 int	ft_verif_file(char *filename)
 {
 	int		file_d;
-	int		size;
 	char	*str;
 	char	**tab;
 
 	file_d = open(filename, O_RDONLY);
 	if (file_d < 0)
 		return (ft_aff_error(MAP_ER));
-	size = ft_count_file(file_d);
-	if (size < 0)
+	str = ft_read_file(open(filename, O_RDONLY));
+	if (!str)
+	{
+		free(str);
 		return (ft_aff_error(MAP_ER));
-	str = ft_read_file(open(filename, O_RDONLY), size);
+	}
 	tab = ft_split(str, "\n");
 	if (verif_line(tab))
 	{
@@ -116,5 +110,7 @@ int	ft_verif_file(char *filename)
 	}
 	if ((ft_tablen(tab) - 1) != ft_atoi(tab[0]))
 		return (ft_aff_error(MAP_ER));
+	free(str);
+	ft_free_tab(tab);
 	return (0);
 }

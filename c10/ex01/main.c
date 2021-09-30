@@ -6,7 +6,7 @@
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 16:22:04 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/24 12:53:31 by acolin           ###   ########.fr       */
+/*   Updated: 2021/09/28 22:36:16 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -66,12 +66,19 @@ int	main(int argc, char *argv[])
 {
 	int file_d;
 	char buffer[1];
+	char buffer_ult[30000];
 	int i;
 
 	file_d = 0;
 	i = 1;
-	if (argc < 1)
-		return (0);
+	if (argc == 1)
+	{	
+		while(1)
+		{
+			read(0, buffer_ult, 30000);
+			ft_putstr(buffer_ult);
+		}
+	}
 	else
 	{
 		while (i < argc)

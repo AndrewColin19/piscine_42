@@ -6,83 +6,83 @@
 /*   By: acolin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 14:55:48 by acolin            #+#    #+#             */
-/*   Updated: 2021/09/29 16:19:01 by acolin           ###   ########.fr       */
+/*   Updated: 2021/09/30 09:38:26 by acolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/utils.h"
 
-int    ft_is_sep(char *charset, char c)
+int	ft_is_sep(char *charset, char c)
 {
-    int        i;
+	int	i;
 
-    if (c == '\0')
-        return (1);
-    i = 0;
-    while (charset[i] != '\0')
-    {
-        if (charset[i] == c)
-            return (1);
-        i++;
-    }
-    return (0);
+	if (c == '\0')
+		return (1);
+	i = 0;
+	while (charset[i] != '\0')
+	{
+		if (charset[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-int    ft_split_size(char *str, char *seps)
+int	ft_split_size(char *str, char *seps)
 {
-    int        i;
-    int        size;
+	int	i;
+	int	size;
 
-    i = 0;
-    size = 0;
-    while (str[i] != '\0')
-    {
-        if (!ft_is_sep(seps, str[i]) && ft_is_sep(seps, str[i + 1]))
-            size++;
-        i++;
-    }
-    return (size);
+	i = 0;
+	size = 0;
+	while (str[i] != '\0')
+	{
+		if (!ft_is_sep(seps, str[i]) && ft_is_sep(seps, str[i + 1]))
+			size++;
+		i++;
+	}
+	return (size);
 }
 
-char    *ft_split_copy(char *from, char *seps, int start, int end)
+char	*ft_split_copy(char *from, char *seps, int start, int end)
 {
-    char    *word;
-    int        i;
+	char	*word;
+	int		i;
 
-    word = malloc(end - start + 1);
-    if (!word)
-        return (NULL);
-    i = 0;
-    while (i + start < end && !ft_is_sep(seps, from[i + start]))
-        word[i] = from[i + start], i++;
-    word[i] = '\0';
-    return (word);
+	word = malloc(end - start + 1);
+	if (!word)
+		return (NULL);
+	i = 0;
+	while (i + start < end && !ft_is_sep(seps, from[i + start]))
+		word[i] = from[i + start], i++;
+	word[i] = '\0';
+	return (word);
 }
 
-char    **ft_split(char *str, char *charset)
+char	**ft_split(char *str, char *charset)
 {
-    char    **words;
-    int        size;
-    int        i;
-    int        j;
-    int        k;
+	char	**words;
+	int		size;
+	int		i;
+	int		j;
+	int		k;
 
-    size = ft_split_size(str, charset);
-    words = malloc((size + 1) * sizeof(char *));
-    words[size] = 0;
-    i = 0;
-    k = 0;
-    while (str[i] != '\0')
-    {
-        if (ft_is_sep(charset, str[i]))
-            i++;
-        else
-        {
-            j = 0;
-            while (!ft_is_sep(charset, str[i + j]))
-                j++;
-            words[k++] = ft_split_copy(str, charset, i, i + j + 1);
-            i += j;
-        }
-    }
-    return (words);
+	size = ft_split_size(str, charset);
+	words = malloc((size + 1) * sizeof(char *));
+	words[size] = 0;
+	i = 0;
+	k = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_is_sep(charset, str[i]))
+			i++;
+		else
+		{
+			j = 0;
+			while (!ft_is_sep(charset, str[i + j]))
+				j++;
+			words[k++] = ft_split_copy(str, charset, i, i + j + 1);
+			i += j;
+		}
+	}
+	return (words);
 }
